@@ -21,5 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/blogs', [\App\Http\Controllers\BlogController::class, 'index']);
 Route::get('/productos', [\App\Http\Controllers\ProductoController::class, 'index']);
 Route::post('/productos', [\App\Http\Controllers\ProductoController::class, 'store']);
+Route::post('/productos-actualizar', [\App\Http\Controllers\ProductoController::class, 'update']);
+Route::post('/productos-eliminar', [\App\Http\Controllers\ProductoController::class, 'destroy']);
 Route::get('/categorias', [\App\Http\Controllers\CategoriaController::class, 'index']);
 

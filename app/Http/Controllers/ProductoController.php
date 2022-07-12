@@ -34,53 +34,43 @@ class ProductoController extends Controller
             'precio' => $request->precio,
             'cantidad' => $request->cantidad,
             'kilos' => $request->kilos,
-            'imagen_table' => "",
-            'imagen' => ""
+            'imagen_table' => "https://via.placeholder.com/185x110",
+            'imagen' => "https://via.placeholder.com/223x167"
         ]);
+
+        return response()->json($producto);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request)
     {
-        //
+        $producto = Producto::where('id', $request->id)->update([
+            'categoria_id' => $request->categoria_id,
+            'nombre' => $request->nombre,
+            'precio' => $request->precio,
+            'cantidad' => $request->cantidad,
+            'kilos' => $request->kilos,
+        ]);
+
+        return response()->json($producto);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $producto = Producto::find($request->id);
+        $producto->delete();
+        return response()->json(["status" => 200]);
     }
 }
